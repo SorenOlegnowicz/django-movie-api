@@ -1,20 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
+{% extends 'base.html' %}
 
-<body>
-<a href="{% url 'create_movie' %}">Create</a>
-
-{% for movie in object_list %}
-    <div><a href="{% url 'movie_detail' movie.id %}">{{ movie.title }}</a>
-        <form method="POST" action="{% url 'delete_movie' movie.id %}">
-            {% csrf_token %}
-        <button type="submit">Delete</button>
-        </form>
-    </div>
-{% endfor %}
-</body>
-</html>
+{% block body %}
+<div style="padding-top: 30px; text-align: center;">
+    {% for movie in object_list %}
+        <div><a href="{% url 'movie_detail' movie.id %}">{{ movie.title }}</a>
+            <form method="POST" action="{% url 'delete_movie' movie.id %}">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+            <form method="GET" action="{% url 'update_movie' movie.id %}">
+                {% csrf_token %}
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
