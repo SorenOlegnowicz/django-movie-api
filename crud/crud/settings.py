@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'movie',
     'api',
     'rest_framework',
+    'api_framework',
 )
 
 MIDDLEWARE_CLASSES = (
